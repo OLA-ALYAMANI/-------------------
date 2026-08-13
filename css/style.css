@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&display=swap');
+
+.login-wrapper {
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: "El Messiri", sans-serif;
+}
+
+/* Logo */
+.login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-logo img {
+    width: 90px;
+}
+
+/* .login-logo h2 {
+    color: #0a4ea3;
+    margin-top: 10px;
+    font-size: 1.4rem;
+} */
+
+/* Login Box */
+.login-box {
+    width: 330px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    text-align: right;
+    font-family: "Beiruti", sans-serif;
+    font-size: 30px;
+}
+
+.login-box h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0a4ea3;
+}
+
+.login-box label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #0a4ea3;
+    font-size: 1.3rem;
+}
+
+.login-box input {
+    width: 19rem;
+    padding: 10px;
+    border: 2px solid #0a4ea3;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+/* Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #0a4ea3;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 12px;
+    font-family: "Beiruti", sans-serif;
+}
+
+.login-btn:hover {
+    background: white;
+    color: #0a4ea3;
+    font-weight: bold;
+    border: 2px solid #0a4ea0;
+}
+
+/* Blue Shapes */
+.shapes .shape {
+    position: absolute;
+    background: #0a4ea3;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.shape-1 {
+    width: 60px;
+    height: 60px;
+    top: 40px;
+    left: 40px;
+}
+
+.shape-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 60px;
+    right: 50px;
+}
+
+.shape-3 {
+    width: 50px;
+    height: 50px;
+    top: 120px;
+    right: 120px;
+}
