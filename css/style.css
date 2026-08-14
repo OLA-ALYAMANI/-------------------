@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&display=swap');
+@import url(./fonts.css);
 
 .login-wrapper {
     width: 100%;
@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    font-family: "El Messiri", sans-serif;
+    font-family: var(--roboto);
 }
 
 /* Logo */
@@ -36,7 +36,7 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     text-align: right;
-    font-family: "Beiruti", sans-serif;
+    font-family: var(--roboto);
     font-size: 30px;
 }
 
@@ -76,7 +76,7 @@
     cursor: pointer;
     transition: 0.3s;
     margin-top: 12px;
-    font-family: "Beiruti", sans-serif;
+    font-family: var(--roboto);
 }
 
 .login-btn:hover {
