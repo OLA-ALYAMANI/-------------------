@@ -55,19 +55,23 @@
 
 .search-box{
     width: 25rem;
+    border-radius: 15px;
     border-bottom: 2px solid #DEDEDE;
+    transition: box-shadow 0.40s;
+}
+
+.search-box:focus-within{
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
 }
 
 .search-box input {
     width: 25rem;
     padding: 14px;
     border: none;
+    background: transparent;
+    outline: none;
     font-size: 24px;
     font-family: var(--roboto);
-}
-
-.search-box input:hover{
-
 }
 
 .icon img{
