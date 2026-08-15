@@ -1,0 +1,82 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 520px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+input, button {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+button:hover {
+  background-color: #0052a3;
+}
+
+.result-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+  text-align: right;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.alert-error {
+  color: #d32f2f;
+  margin-top: 15px;
+  font-weight: bold;
+}

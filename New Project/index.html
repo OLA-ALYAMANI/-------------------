@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام البحث عن الموظفين - ملفات متعددة</title>
+  
+  <!-- استدعاء ملف التنسيق -->
+  <link rel="stylesheet" href="./css/style.css">
+  
+  <!-- استدعاء مكتبة SheetJS لقراءة ملفات Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <div class="card">
+    <h3>البحث عن بيانات موظف</h3>
+    
+    <!-- قسم رفع ملفات Excel (يدعم ملفات متعددة) -->
+    <div class="input-group">
+      <label for="excelFiles">اختر ملفات Excel (يمكن تحديد أكثر من ملف):</label>
+      <input type="file" id="excelFiles" accept=".xlsx, .xls" multiple>
+      <small id="fileStatus"></small>
+    </div>
+    
+    <!-- قسم إدخال الرقم الوظيفي -->
+    <div class="input-group">
+      <label for="empIdInput">الرقم الوظيفي (Employee ID):</label>
+      <input type="text" id="empIdInput" placeholder="أدخل الرقم الوظيفي...">
+    </div>
+    
+    <!-- زر البحث -->
+    <button onclick="searchEmployee()">بحث</button>
+  </div>
+
+  <!-- حاوية عرض النتائج -->
+  <div id="resultArea"></div>
+
+  <!-- استدعاء ملف البرمجة والمنطق -->
+  <script src="./js/main.js"></script>
+</body>
+</html>
