@@ -19,10 +19,10 @@
 .user-box{
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
     padding: 13px;
     height: 40px;
-    width:38%;
+    width:33%;
     font-family: var(--roboto);
 }
 
@@ -46,22 +46,62 @@
     position: relative;
 }
 
+.upload-file{
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  /* gap: 45px; */
+  width: 27rem;
+  justify-content: center;
+  /* background: #0775BB; */
+  padding: 12px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--roboto);
+  font-size: 24px;
+  /* color: #fff; */
+  border: 2px solid #4C9ACF;
+  transition: 0.2s;
+}
+
+.upload-btn:hover {
+  background: #4C9ACF;
+}
+
+.upload-btn .icon {
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+.upload-btn .icon img{
+    margin: 0;
+    height: 40px;
+    width: 40px;
+}
+
 .search-area{
     display: flex;
     justify-content: center;
-    gap: 35px;
-    padding: 2em 0;
+    gap: 15px;
+    margin: 2em 0;
 }
 
 .search-box{
-    width: 25rem;
+    width: 24rem;
     border-radius: 15px;
-    border-bottom: 2px solid #DEDEDE;
+    border-bottom: 2px solid #0775BB;
+    display: flex;
     transition: box-shadow 0.40s;
 }
 
 .search-box:focus-within{
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 2px rgba(76,154, 207, 0.75);
 }
 
 .search-box input {
@@ -74,10 +114,29 @@
     font-family: var(--roboto);
 }
 
-.icon img{
-    width: 40px;
-    height: 40px;
-    margin: 0 17px;
+.search-area img{
+    width: 30px;
+    height: 30px;
+    margin: 14px 11px;
+}
+
+.search-btn{
+    position: relative;
+    width: 9rem;
+    height: 4rem;
+    font-family: var(--roboto);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: #4C9ACF;
+    border-radius: 18px;
+    color: #fff;
+}
+
+.search-btn:hover{
+    background: rgba(76, 155, 207, 0.695);
 }
 
 .table-card {
@@ -91,16 +150,33 @@
 .table-card table {
     width: 100%;
     border-collapse: collapse;
+    font-family: var(--roboto);
 }
 
 .table-card th{
     background-color: #BFDAED;
     /* color: #ffff;
     -webkit-text-stroke: 1px gray; */
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .table-card th, td {
     padding: 12px;
     border: 1px solid #4C9ACF;
+}
+
+.table-card td{
+    
+    font-size: 25px;
+}
+
+.display-btn{
+    width: 80px;
+    height: 40px;
+    border: none;
+    background: #4C9ACF;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

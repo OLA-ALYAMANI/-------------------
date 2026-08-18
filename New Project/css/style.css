@@ -1,8 +1,33 @@
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  padding: 20px;
-  background-color: #f8f9fa;
-  color: #333;
+
+}
+
+.header-nav .navbar{
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.navbar-link{
+    display: flex;
+    align-items: center;
+    padding: 13px;
+}
+
+.logo{
+    width: 16rem;
+}
+
+.search-area{
+  display: flex;
+  justify-content: center;
+}
+
+.search-area .search-title{
+  font-size: 30px;
+  text-align: center;
 }
 
 .card {
@@ -10,7 +35,8 @@ body {
   border: 1px solid #e0e0e0;
   padding: 20px;
   border-radius: 8px;
-  max-width: 520px;
+  /* max-width: 520px; */
+  width: 60%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
@@ -30,6 +56,15 @@ small {
   font-size: 12px;
 }
 
+#excelFiles {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-image: url('../img/excel.png'); /* إدراج أيقونة */
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  }
+
 input, button {
   padding: 10px;
   width: 100%;
@@ -45,6 +80,7 @@ button {
   cursor: pointer;
   font-weight: bold;
   margin-top: 8px;
+  font-size: 22px;
 }
 
 button:hover {
@@ -52,11 +88,12 @@ button:hover {
 }
 
 .result-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.15);
   border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 6px;
+  padding: 20px;
+  border-radius: 10px;
   margin-top: 15px;
+  text-align: center;
 }
 
 table {
@@ -66,13 +103,13 @@ table {
 }
 
 th, td {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #4C9ACF;
   padding: 8px;
   text-align: right;
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #BFDAED;
 }
 
 .alert-error {

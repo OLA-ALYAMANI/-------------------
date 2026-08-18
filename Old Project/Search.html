@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
     <link rel="stylesheet" href="./css/search-style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <!-- ----- START HEADR AREA ----- -->
@@ -26,14 +27,29 @@
 
     <!-- ----- START MAIN AREA ----- -->
 <div class="container">
+
+    <!-- ULOAD FILE -->
+    <div class="upload-file">
+        <label class="upload-btn">
+        <input type="file" id="excelFiles" multiple hidden>
+        <span class="icon"><img src="./img/file.png" alt="upload-files"></span>
+        Upload a new Excel file
+        </label>
+    </div>
+
+    <!-- SEARCH -->
     <div class="search-area">
         <div class="search-box">
+            <img  class="icon-img" src="./img/loupe.png" alt="search-icon">
             <input type="text" placeholder="Employee ID ...">
         </div>
-        <div class="icon">
-            <img  class="icon-img" src="./img/loupe.png" alt="search-icon">
-        </div>
+        <button class="search-btn" onclick="searchEmployee()">
+            <img src="./img/search.png" alt="seach">
+            <p>Search</p>
+        </button>
     </div>
+
+    <!-- TABLE -->
     <div class="table-card">
         <table>
             <thead>

@@ -13,28 +13,52 @@
 </head>
 <body>
 
-  <div class="card">
-    <h3>البحث عن بيانات موظف</h3>
-    
-    <!-- قسم رفع ملفات Excel (يدعم ملفات متعددة) -->
-    <div class="input-group">
-      <label for="excelFiles">اختر ملفات Excel (يمكن تحديد أكثر من ملف):</label>
-      <input type="file" id="excelFiles" accept=".xlsx, .xls" multiple>
-      <small id="fileStatus"></small>
+  <!-- ------------ SATART HEADER AREA ------------ -->
+
+  <header class="header-area">
+    <div class="header-nav">
+      <nav class="navbar">
+          <a  class="navbar-link" href="./index.html">
+            <img class="logo" src="./img/rb-logo-ar-arabiccoupon-rb-coupons-and-promo-codes-400x400-removebg-preview.png" alt="R&B">
+          </a>
+        </nav>
     </div>
-    
-    <!-- قسم إدخال الرقم الوظيفي -->
-    <div class="input-group">
-      <label for="empIdInput">الرقم الوظيفي (Employee ID):</label>
-      <input type="text" id="empIdInput" placeholder="أدخل الرقم الوظيفي...">
+  </header>
+
+  <!-- ------------ END SEARCH AREA ------------ -->
+
+  <!-- ------------ START SEARCH AREA ------------ -->
+
+  <section class="search-area">
+    <div class="card">
+      <h3 class="search-title">البحث عن بيانات موظف</h3>
+      
+      <!-- قسم رفع ملفات Excel (يدعم ملفات متعددة) -->
+      <div class="input-group">
+        <label for="excelFiles">اختر ملفات Excel (يمكن تحديد أكثر من ملف):</label>
+        <input type="file" id="excelFiles" accept=".xlsx, .xls" multiple>
+        <small id="fileStatus"></small>
+      </div>
+      
+      <!-- قسم إدخال الرقم الوظيفي -->
+      <div class="input-group">
+        <label for="empIdInput">الرقم الوظيفي (Employee ID):</label>
+        <input type="text" id="empIdInput" placeholder="أدخل الرقم الوظيفي...">
+      </div>
+      
+      <!-- زر البحث -->
+      <button onclick="searchEmployee()">بحث</button>
     </div>
-    
-    <!-- زر البحث -->
-    <button onclick="searchEmployee()">بحث</button>
-  </div>
+  </section>
 
   <!-- حاوية عرض النتائج -->
-  <div id="resultArea"></div>
+  <section class="result-area">
+    <div class="table-card">
+      <div id="resultArea"></div>
+    </div>
+  </section>
+
+  <!-- ------------ END SEARCH AREA ------------ -->
 
   <!-- استدعاء ملف البرمجة والمنطق -->
   <script src="./js/main.js"></script>

@@ -64,8 +64,44 @@ function searchEmployee() {
   resultDiv.innerHTML = '';
 
   if (!combinedExcelData.length) {
-    alert('يرجى اختيار ملفات Excel أولاً.');
-    return;
+    // alert('يرجى اختيار ملفات Excel أولاً.');
+    // return;
+    let html = `<div class="result-title">تم العثور على (${matches.length}) نتيجة:</div>`;
+    
+      matches.forEach((employee, index) => {
+    html += `
+      <div class="result-source">نتيجة #${index + 1} — المصدر: ${employee['_مصدر_الملف']}</div>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>الخاصية</th>
+            <th>التفاصيل</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    for (const [key, value] of Object.entries(employee)) {
+      if (key !== '_مصدر_الملف') {
+        html += `
+          <tr>
+            <td>${key}</td>
+            <td>${value ?? '-'}</td>
+          </tr>
+        `;
+      }
+    }
+
+    html += `
+        </tbody>
+      </table>
+    `;
+  });
+
+  resultDiv.innerHTML = html;
+} else {
+  resultDiv.innerHTML = 'لم يتم العثور على موظف بهذا الرقم في الملفات المرفوعة.';
+
   }
 
   if (!inputId) {
