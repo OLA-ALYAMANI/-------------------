@@ -23,6 +23,8 @@ body {
 .search-area{
   display: flex;
   justify-content: center;
+  margin: 20px;
+  padding: 15px;
 }
 
 .search-area .search-title{
@@ -87,29 +89,42 @@ button:hover {
   background-color: #0052a3;
 }
 
-.result-card {
+.result {
+  position: relative;
+  width: 60%;
+  display: flex;
+  justify-self: center;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 10px;
-  margin-top: 15px;
+  margin-top: 20px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  box-shadow: 0 0 2px rgba(76, 154, 207, 0.73);
+}
+
+.result-title{
+  font-size: 20px;
   text-align: center;
 }
 
-table {
+.results-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-th, td {
+.results-table th, .results-table td {
   border: 1px solid #4C9ACF;
   padding: 8px;
   text-align: right;
 }
 
-th {
+.results-table th {
   background-color: #BFDAED;
+  color: #333;
 }
 
 .alert-error {
