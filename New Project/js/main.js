@@ -66,7 +66,7 @@ function searchEmployee() {
   if (!combinedExcelData.length) {
     alert('يرجى اختيار ملفات Excel أولاً.');
     return;
-
+  }
   if (!inputId) {
     alert('يرجى إدخال الرقم الوظيفي.');
     return;
@@ -79,31 +79,11 @@ function searchEmployee() {
   });
 
   if (matches.length > 0) {
-  //   let html = `تم العثور على (${matches.length}) نتيجة:`;
-
-  //   matches.forEach((employee, index) => {
-  //     html += ``;
-  //     html += `نتيجة #${index + 1} (المصدر: ${employee['_مصدر_الملف']})`;
-  //     html += '';
-      
-  //     for (const [key, value] of Object.entries(employee)) {
-  //       if (key !== '_مصدر_الملف') {
-  //         html += ``;
-  //       }
-  //     }
-      
-  //     html += 'الخاصيةالتفاصيل${key}${value ?? '-'}';
-  //   });
-
-  //   resultDiv.innerHTML = html;
-  // } else {
-  //   resultDiv.innerHTML = 'لم يتم العثور على موظف بهذا الرقم في الملفات المرفوعة.';
-  // }
     let html = `<div class="result-title">تم العثور على (${matches.length}) نتيجة:</div>`;
     
       matches.forEach((employee, index) => {
     html += `
-      // <div class="result-source">نتيجة #${index + 1} — المصدر: ${employee['_مصدر_الملف']}</div>
+      <div class="result-source">نتيجة #${index + 1} — المصدر: ${employee['_مصدر_الملف']}</div>
       <table class="results-table">
         <thead>
           <tr>
@@ -135,6 +115,5 @@ function searchEmployee() {
   } else {
   resultDiv.innerHTML = 'لم يتم العثور على موظف بهذا الرقم في الملفات المرفوعة.';
 
-  }
   }
 }
