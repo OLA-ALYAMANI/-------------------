@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Registry</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --ink:#20232B;
+    --paper:#EDEAE2;
+    --paper-2:#E2DDD0;
+    --line:#C9A66B;
+    --teal:#3F7A6B;
+    --teal-dark:#2C5A4F;
+    --red-stamp:#9C3B32;
+    --card-shadow: 0 1px 0 rgba(32,35,43,0.08);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(180deg, rgba(32,35,43,0.035) 0px, rgba(32,35,43,0.035) 1px, transparent 1px, transparent 34px);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', 'Courier New', monospace;
+    min-height:100vh;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  header{
+    padding:36px 24px 20px;
+    text-align:center;
+    border-bottom:2px solid var(--ink);
+    background:var(--paper);
+  }
+  header .eyebrow{
+    font-size:11px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--teal-dark);
+    margin-bottom:8px;
+  }
+  header h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,42px);
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  header p{
+    font-size:13px;
+    color:#5b5f6b;
+    margin:0;
+  }
+
+  main{
+    max-width:920px;
+    margin:0 auto;
+    padding:28px 20px 60px;
+  }
+
+  .dropzone{
+    border:2px dashed var(--ink);
+    border-radius:2px;
+    padding:28px 20px;
+    text-align:center;
+    background:rgba(255,255,255,0.35);
+    cursor:pointer;
+    transition:background 0.15s ease, border-color 0.15s ease;
+    position:relative;
+  }
+  .dropzone:hover, .dropzone.drag{
+    background:rgba(63,122,107,0.08);
+    border-color:var(--teal);
+  }
+  .dropzone .stamp{
+    display:inline-block;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    border:1.5px solid var(--red-stamp);
+    color:var(--red-stamp);
+    padding:3px 10px;
+    border-radius:2px;
+    transform:rotate(-3deg);
+    margin-bottom:10px;
+  }
+  .dropzone p{ margin:4px 0; font-size:13.5px; }
+  .dropzone .sub{ color:#6b6f7a; font-size:11.5px; }
+  .dropzone input{ display:none; }
+  .dropzone .filename{
+    margin-top:10px;
+    font-size:12px;
+    color:var(--teal-dark);
+    font-weight:600;
+  }
+
+  .controls{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin:22px 0 6px;
+    flex-wrap:wrap;
+  }
+  .search-wrap{
+    flex:1;
+    min-width:220px;
+    display:flex;
+    align-items:center;
+    border:2px solid var(--ink);
+    background:#fff;
+    padding:0 12px;
+  }
+  .search-wrap span{
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--teal-dark);
+    margin-right:10px;
+    white-space:nowrap;
+    font-weight:600;
+  }
+  .search-wrap input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:11px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    background:transparent;
+    color:var(--ink);
+  }
+  .col-select{
+    border:2px solid var(--ink);
+    background:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:10px 10px;
+    color:var(--ink);
+  }
+  .count-tag{
+    font-size:11px;
+    color:#6b6f7a;
+    margin:2px 2px 14px;
+    letter-spacing:0.02em;
+  }
+  .count-tag b{ color:var(--ink); }
+
+  .ledger{
+    border-top:2px solid var(--ink);
+  }
+  .row-card{
+    display:grid;
+    grid-template-columns:1fr;
+    background:#fff;
+    border-bottom:1px dashed #b9b3a2;
+    padding:14px 16px;
+    position:relative;
+    transition:background 0.12s ease;
+  }
+  .row-card:hover{ background:#faf9f6; }
+  .row-card .idline{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .row-card .idline .badge{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:13px;
+    background:var(--teal);
+    color:#fff;
+    padding:2px 8px;
+    border-radius:2px;
+    letter-spacing:0.02em;
+  }
+  .row-card .idline .primary{
+    font-size:15.5px;
+    font-weight:600;
+  }
+  .fields{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
+    gap:4px 18px;
+    font-size:12.5px;
+    color:#41454f;
+  }
+  .fields div span.k{
+    display:block;
+    font-size:9.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:#96917f;
+    margin-bottom:1px;
+  }
+  mark{
+    background:#F3D9A8;
+    color:var(--ink);
+    padding:0 2px;
+    border-radius:1px;
+  }
+
+  .empty-state{
+    text-align:center;
+    padding:50px 20px;
+    color:#7a7d87;
+    font-size:13px;
+  }
+  .empty-state .big{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    color:var(--ink);
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  .error{
+    margin-top:14px;
+    border:1.5px solid var(--red-stamp);
+    color:var(--red-stamp);
+    padding:10px 14px;
+    font-size:12.5px;
+    background:rgba(156,59,50,0.06);
+  }
+  footer{
+    text-align:center;
+    font-size:10.5px;
+    color:#9a9da6;
+    padding:20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Personnel Lookup</div>
+  <h1>Employee Registry</h1>
+  <p>Load a roster, search any employee by ID.</p>
+</header>
+
+<main>
+  <div class="dropzone" id="dropzone">
+    <div class="stamp">Load File</div>
+    <p>Drop an Excel file here, or click to browse</p>
+    <div class="sub">.xlsx / .xls / .csv &mdash; processed in your browser, nothing is uploaded</div>
+    <div class="filename" id="filename"></div>
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+  </div>
+
+  <div id="errorBox"></div>
+
+  <div id="workarea" style="display:none;">
+    <div class="controls">
+      <div class="search-wrap">
+        <span>ID</span>
+        <input type="text" id="searchInput" placeholder="Search by employee ID…" autocomplete="off">
+      </div>
+      <select class="col-select" id="colSelect" title="Column used as Employee ID"></select>
+    </div>
+    <div class="count-tag" id="countTag"></div>
+    <div class="ledger" id="results"></div>
+  </div>
+</main>
+
+<footer>All parsing happens locally in your browser — the file never leaves your device.</footer>
+
+<script>
+let rows = [];
+let headers = [];
+let idColumn = null;
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const filenameEl = document.getElementById('filename');
+const errorBox = document.getElementById('errorBox');
+const workarea = document.getElementById('workarea');
+const searchInput = document.getElementById('searchInput');
+const colSelect = document.getElementById('colSelect');
+const countTag = document.getElementById('countTag');
+const results = document.getElementById('results');
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('drag');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => {
+  if (e.target.files.length) handleFile(e.target.files[0]);
+});
+
+function showError(msg){
+  errorBox.innerHTML = `<div class="error">${msg}</div>`;
+}
+function clearError(){ errorBox.innerHTML = ''; }
+
+function guessIdColumn(hdrs){
+  const candidates = hdrs.filter(h => /\bid\b|employee[_\s]?id|emp[_\s]?id|staff[_\s]?id/i.test(h));
+  return candidates.length ? candidates[0] : hdrs[0];
+}
+
+function handleFile(file){
+  clearError();
+  filenameEl.textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = new Uint8Array(evt.target.result);
+      const wb = XLSX.read(data, { type: 'array' });
+      const sheetName = wb.SheetNames[0];
+      const sheet = wb.Sheets[sheetName];
+      const json = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      if (!json.length) {
+        showError('No rows found in the first sheet of that file.');
+        workarea.style.display = 'none';
+        return;
+      }
+      rows = json;
+      headers = Object.keys(json[0]);
+      idColumn = guessIdColumn(headers);
+
+      colSelect.innerHTML = headers.map(h =>
+        `<option value="${h}" ${h===idColumn?'selected':''}>ID column: ${h}</option>`
+      ).join('');
+
+      workarea.style.display = 'block';
+      searchInput.value = '';
+      render('');
+      searchInput.focus();
+    } catch (err) {
+      console.error(err);
+      showError('Could not read that file. Make sure it is a valid .xlsx, .xls, or .csv file.');
+      workarea.style.display = 'none';
+    }
+  };
+  reader.onerror = () => showError('There was a problem reading the file.');
+  reader.readAsArrayBuffer(file);
+}
+
+colSelect.addEventListener('change', () => {
+  idColumn = colSelect.value;
+  render(searchInput.value);
+});
+searchInput.addEventListener('input', () => render(searchInput.value));
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function highlight(text, query){
+  const t = escapeHtml(text);
+  if (!query) return t;
+  const idx = t.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) return t;
+  return t.slice(0, idx) + '<mark>' + t.slice(idx, idx+query.length) + '</mark>' + t.slice(idx+query.length);
+}
+
+function render(query){
+  const q = query.trim();
+  const filtered = q
+    ? rows.filter(r => String(r[idColumn] ?? '').toLowerCase().includes(q.toLowerCase()))
+    : rows;
+
+  countTag.innerHTML = q
+    ? `<b>${filtered.length}</b> of ${rows.length} records match “${escapeHtml(q)}”`
+    : `<b>${rows.length}</b> records loaded`;
+
+  if (!filtered.length) {
+    results.innerHTML = `<div class="empty-state"><div class="big">No match</div>No employee found with that ID.</div>`;
+    return;
+  }
+
+  const otherHeaders = headers.filter(h => h !== idColumn);
+  const cap = q ? filtered.length : Math.min(filtered.length, 200);
+
+  results.innerHTML = filtered.slice(0, cap).map(r => {
+    const idVal = r[idColumn] ?? '';
+    const primaryNameCol = otherHeaders.find(h => /name/i.test(h));
+    const primaryVal = primaryNameCol ? r[primaryNameCol] : '';
+    const fieldCols = otherHeaders.filter(h => h !== primaryNameCol);
+
+    return `
+      <div class="row-card">
+        <div class="idline">
+          <span class="badge">${highlight(idVal, q)}</span>
+          ${primaryVal ? `<span class="primary">${escapeHtml(primaryVal)}</span>` : ''}
+        </div>
+        <div class="fields">
+          ${fieldCols.map(h => `<div><span class="k">${escapeHtml(h)}</span>${escapeHtml(r[h])}</div>`).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if (!q && rows.length > cap) {
+    results.innerHTML += `<div class="empty-state">Showing first ${cap} of ${rows.length} — search by ID to narrow this down.</div>`;
+  }
+}
+</script>
+</body>
+</html>

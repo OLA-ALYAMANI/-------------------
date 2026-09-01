@@ -46,70 +46,15 @@ document.getElementById('excelFiles').addEventListener('change', function (e) {
 });
 
 // دالة البحث
-// function searchEmployee() {
-//   const inputId = document.getElementById('empIdInput').value.trim();
-//   const resultDiv = document.getElementById('resultArea');
-//   resultDiv.innerHTML = '';
-
-//   if (!excelData || excelData.length === 0) {
-//     alert('يرجى اختيار ملف Excel أولاً.');
-//     return;
-//   }
-//   if (!inputId) {
-//     alert('يرجى إدخال الرقم الوظيفي.');
-//     return;
-//   }
-
-//   const matches = excelData.filter((row) => {
-//     const idValue = row['Employee ID'] || row['EmployeeID'] || row['الرقم الوظيفي'] || row['رقم الموظف'];
-//     return String(idValue || '').trim() === inputId;
-//   });
-
-//   if (matches.length > 0) {
-//     let html = `<div class="result-title">تم العثور على (${matches.length}) نتيجة:</div>`;
-//     matches.forEach((employee, index) => {
-//       html += `
-//         <div class="result-source">نتيجة #${index + 1} — المصدر: ${employee['_مصدر_الملف']}</div>
-//         <table class="results-table">
-//           <thead>
-//             <tr>
-//               <th>الخاصية</th>
-//               <th>التفاصيل</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//       `;
-//       for (const [key, value] of Object.entries(employee)) {
-//         if (key !== '_مصدر_الملف') {
-//           html += `
-//             <tr>
-//               <td>${key}</td>
-//               <td>${value ?? '-'}</td>
-//             </tr>
-//           `;
-//         }
-//       }
-//       html += `
-//           </tbody>
-//         </table>
-//       `;
-//     });
-//     resultDiv.innerHTML = html;
-//   } else {
-//     resultDiv.innerHTML = 'لم يتم العثور على موظف بهذا الرقم في الملف المرفوع.';
-//   }
-// }
-
 function searchEmployee() {
   const inputId = document.getElementById('empIdInput').value.trim();
   const resultDiv = document.getElementById('resultArea');
   resultDiv.innerHTML = '';
 
   if (!excelData || excelData.length === 0) {
-    alert('يرجى رفع ملف Excel أولاً.');
+    alert('يرجى اختيار ملف Excel أولاً.');
     return;
   }
-
   if (!inputId) {
     alert('يرجى إدخال الرقم الوظيفي.');
     return;
@@ -120,52 +65,94 @@ function searchEmployee() {
     return String(idValue || '').trim() === inputId;
   });
 
-  if (matches.length > 0 || matches.length == 1) {
-    // إنشاء جدول واحد للنتائج
-    let html = `
-      <table class="results-table" border="1" cellpadding="5" cellspacing="0">
-        <thead>
-        </thead>
-        <tbody>
-    `;
-
+  if (matches.length > 0) {
+    let html = `<div class="result-title">تم العثور على (${matches.length}) نتيجة:</div>`;
     matches.forEach((employee, index) => {
-    //   html += `
-    //     <tr>
-    //       <td>${index + 1}</td>
-    //       <td>${employee['_مصدر_الملف']}</td>
-    //       <td>
-    //         <table style="width: 100%; border-collapse: collapse;">
-    //           <tbody>
-    //   `;
+      html += `
+        <div class="result-source">نتيجة #${index + 1} — المصدر: ${employee['_مصدر_الملف']}</div>
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>الخاصية</th>
+              <th>التفاصيل</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
       for (const [key, value] of Object.entries(employee)) {
         if (key !== '_مصدر_الملف') {
           html += `
             <tr>
-              <td style="border: 1px solid #ccc; padding: 4px; font-weight: bold;">${key}</td>
-              <td style="border: 1px solid #ccc; padding: 4px;">${value ?? '-'}</td>
+              <td>${key}</td>
+              <td>${value ?? '-'}</td>
             </tr>
           `;
         }
       }
       html += `
-              </tbody>
-            </table>
-          </td>
-        </tr>
+          </tbody>
+        </table>
       `;
     });
-
-    html += `
-        </tbody>
-      </table>
-    `;
-
     resultDiv.innerHTML = html;
   } else {
     resultDiv.innerHTML = 'لم يتم العثور على موظف بهذا الرقم في الملف المرفوع.';
   }
 }
+
+// function searchEmployee() {
+//   const inputId = document.getElementById('empIdInput').value.trim();
+//   const resultDiv = document.getElementById('resultArea');
+//   const resultSection = document.getElementById('resultSection');
+//   resultDiv.innerHTML = '';
+
+//   if (!excelData || excelData.length === 0) {
+//     alert('يرجى رفع ملف Excel أولاً.');
+//     return;
+//   }
+
+//   if (!inputId) {
+//     alert('يرجى إدخال الرقم الوظيفي.');
+//     return;
+//   }
+
+//   const matches = excelData.filter((row) => {
+//     const idValue = row['Employee ID'] || row['EmployeeID'] || row['الرقم الوظيفي'] || row['رقم الموظف'];
+//     return String(idValue || '').trim() === inputId;
+//   });
+
+//   resultSection.style.display = 'block'; 
+
+//   if (matches.length > 0) {
+//     const employee = matches[0];
+//     // إنشاء جدول واحد للنتائج
+//     let html = `
+//       <table class="results-table">
+//         <tbody>
+//     `;
+
+//     matches.forEach((employee, index) => {
+//       for (const [key, value] of Object.entries(employee)) {
+//         if (key !== '_مصدر_الملف' && key !== '__rowNum__') {
+//           html += `
+//             <tr>
+//               <td>${key}</td>
+//               <td>${value ?? '-'}</td>
+//             </tr>
+//           `;
+//         }
+//       }
+//       html += `
+//               </tbody>
+//             </table>
+//             `;
+//           });
+
+//     resultDiv.innerHTML = html;
+//   } else {
+//     resultDiv.innerHTML = 'لم يتم العثور على موظف بهذا الرقم في الملف المرفوع.';
+//   }
+// }
 
 // function displayResultsInGrid(matches) {
 //   const gridContainer = document.getElementById('gridContainer');

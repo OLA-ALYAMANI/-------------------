@@ -102,6 +102,7 @@ button:hover {
   backdrop-filter: blur(10px);
   text-align: center;
   box-shadow: 0 0 2px rgba(76, 154, 207, 0.73);
+  display: none;
 }
 
 .result-title{
@@ -113,18 +114,20 @@ button:hover {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
+  border: none !important;
 }
 
-.results-table th, .results-table td {
-  border: 1px solid #4C9ACF;
-  padding: 8px;
+.results-table td {
+  width: 40%;
   text-align: right;
+  border: none !important;
+  padding: 4px;
+  font-weight: bold;
 }
 
-.results-table th {
-  background-color: #BFDAED;
-  color: #333;
+.results-table tr {
+  border: none !important;
+  margin: 1rem;
 }
 
 .alert-error {

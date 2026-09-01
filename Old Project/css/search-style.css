@@ -133,18 +133,19 @@
 .result-area{
     height: 50%;
     width: auto;
+    display: none;
 }
+
 .result{
     position: relative;
-    width: 70%;
+    width: 90%;
     justify-self: center;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid #ddd;
+    /* background: rgba(255, 255, 255, 0.15); */
+    /* border: 1px solid #ddd; */
     padding: 20px;
     border-radius: 10px;
     margin-top: 30px;
     backdrop-filter: blur(10px);
-    /* text-align: center; */
     box-shadow: 0 0 2px rgba(76, 154, 207, 0.73);
     display: grid;
     grid-template-rows: 40px;
@@ -196,6 +197,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     border: 1px solid #BFDAED;
+    direction: rtl;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
