@@ -126,8 +126,11 @@ function searchEmployee() {
         subInfoBody.className = 'subinfo-body';
         // جعل الـ CSS يطبق التوزيع التلقائي
         subInfoBody.style.display = "grid";
-        subInfoBody.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
-        subInfoBody.style.gap = "17px";
+        // subInfoBody.style.gridTemplateColumns = "repeat(auto-fit, minmax(150px, 1fr))";
+        subInfoBody.style.gridTemplateColumns = "1fr 1fr";
+        subInfoBody.style.gap = "15px";
+        subInfoBody.style.width = "100%";
+        subInfoBody.style.direction = "rtl";
 
         // --- 4. تكرار لإنشاء عناصر لكل عمود في الإكسل ---
         for (const [key, value] of Object.entries(employee)) {

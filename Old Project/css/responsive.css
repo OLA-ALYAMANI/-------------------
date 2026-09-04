@@ -1,0 +1,73 @@
+/* --- تعديلات الهواتف (شاشات أصغر من 768px) --- */
+@media screen and (max-width: 768px) {
+    
+    /* 1. جعل الحاوية تأخذ عرض الشاشة بالكامل */
+    .container {
+        margin: 1rem 0.5rem;
+    }
+
+    /* 2. تعديل زر رفع الملف */
+    .upload-btn {
+        width: 100%; /* يأخذ كامل العرض */
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    /* 3. تعديل منطقة البحث */
+    .search-area {
+        flex-direction: column; /* جعل المدخل والزر فوق بعضهما */
+        align-items: center;
+        gap: 10px;
+    }
+
+    .search-box {
+        width: 100%; /* العرض الكامل */
+    }
+
+    .search-box input {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .search-btn {
+        width: 100%; /* الزر يأخذ كامل العرض */
+        justify-content: center;
+        height: 3.5rem;
+    }
+
+    /* 4. تعديل بطاقة النتائج */
+    .result {
+        width: 95%; /* تكبير البطاقة لتناسب الشاشة الصغيرة */
+        gap: 20px; /* تقليل الفجوة الكبيرة 150px */
+        padding: 15px;
+    }
+
+    .result-info {
+        padding: 15px;
+    }
+
+    .result-info h1 {
+        font-size: 20px;
+    }
+
+    /* 5. جعل معلومات الموظف تظهر تحت بعضها */
+    .result-subinfo {
+        grid-template-columns: 1fr; /* عمود واحد بدل عمودين */
+        padding: 10px;
+    }
+
+    .label {
+        margin: 15px 0 5px 0; /* تقليل المسافات */
+        font-size: 16px;
+    }
+
+    .value {
+        font-size: 18px;
+        word-break: break-all; /* منع خروج النصوص الطويلة */
+    }
+
+    /* 6. تصغير اللوجو قليلاً */
+    .logo {
+        width: 120px;
+    }
+}
